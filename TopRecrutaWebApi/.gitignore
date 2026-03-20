@@ -1,0 +1,44 @@
+# --- Arquivos temporários e de build (.NET) ---
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa]rpach.net10/
+*.suo
+*.user
+*.userossc
+*.sln.docstates
+
+# --- Pacotes Nuget ---
+*.nupkg
+# A pasta de pacotes costuma ser ignorada, pois é restaurada
+**/packages/*
+!**/packages/build/
+
+# --- Configurações de Ambiente/Segurança ---
+appsettings.Development.json
+appsettings.Local.json
+*.env
+secrets.json
+
+# --- Dependências Frontend/Node (se usar) ---
+node_modules/
+dist/
+npm-debug.log
+
+# --- IDEs (VS, VS Code, JetBrains) ---
+.vs/
+.vscode/
+.idea/
+*.launch
+
+# --- Gerados por CI/CD e Publicação ---
+[Pp]ublish/
+*.publishsettings
+
+# --- Logs e Arquivos de Teste ---
+*.log
+*.sqlite
+.runsettings
