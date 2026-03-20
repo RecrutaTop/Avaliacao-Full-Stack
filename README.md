@@ -20,22 +20,32 @@ O projeto consiste em um sistema simplificado de Gestão de Fornecedores, compos
 
 **1. Crie um Fork do repositório e clone para sua máquina**
 
-**2. Restaure as dependências do .NET (Se necessário)**
+**2. Baixe e instale o SDK do .NET 10 (se ainda não tiver instalado)**
+
+🔗 https://dotnet.microsoft.com/pt-br/download
+
+**3. Restaure as dependências do .NET (Se necessário)**
 ```bash
 dotnet restore
 ```
 
-**3. Configure o Banco de Dados**
+**4. Configure o Banco de Dados**
 O projeto via Entity Framework está preparado para receber uma string de conexão. Nós iremos fornecer os dados de um banco de dados para a sua avaliação. Você deverá incluir a conexão no seu arquivo `appsettings.json` (ou `appsettings.Development.json`) para utilizar a base fornecida.
 
-**4. Inicie o servidor da API**
+**5. Inicie o servidor da API**
 ```bash
 dotnet run
 ```
 A API estará disponível localmente em `https://localhost:7277`. (Verifique se porta corresponde, caso contrário troque-a)
 💡 **Dica:** Você pode testar e visualizar todos os endpoints interativamente acessando a documentação no Scalar em `https://localhost:7277/scalar`.
 
+---
+
 ### Front-end (Vue.js)
+
+**1. ** Baixe e instale o Node.js v24 LTS (se ainda não tiver instalado)**
+
+🔗 https://nodejs.org/pt-br/download
 
 **1. Navegue até a pasta do projeto front-end e instale as dependências**
 ```bash
