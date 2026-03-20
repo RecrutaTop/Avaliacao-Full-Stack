@@ -30,7 +30,14 @@ dotnet restore
 ```
 
 **4. Configure o Banco de Dados**
-O projeto via Entity Framework está preparado para receber uma string de conexão. Nós iremos fornecer os dados de um banco de dados para a sua avaliação. Você deverá incluir a conexão no seu arquivo `appsettings.json` (ou `appsettings.Development.json`) para utilizar a base fornecida.
+
+O projeto está preparado para receber uma string de conexão. Nós iremos fornecer os dados de um banco de dados para a sua avaliação. Você deverá incluir a conexão no seu arquivo `appsettings.json` (ou `appsettings.Development.json`) para utilizar a base fornecida, adicionando algo semelhante ao exemplo abaixo:
+
+```json
+"ConnectionStrings": {
+  "DefaultConnection": "Server=localhost;Initial Catalog=dbFornecedores;Persist Security Info=False;User ID=user;Password=password;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=true;"
+}
+```
 
 **5. Inicie o servidor da API**
 ```bash
