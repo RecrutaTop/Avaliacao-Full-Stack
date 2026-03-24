@@ -73,12 +73,13 @@ npm run dev
 | Campo | Tipo | Descrição |
 | --- | --- | --- |
 | `id` | int | Chave primária (Autoincremento) |
-| `NomeFornecedor` | varchar(200) | Nome do fornecedor (Obrigatório) |
-| `Cnpj` | string | CNPJ da empresa |
-| `Endereco` | string | Endereço formatado |
-| `Cep` | string | CEP do endereço |
-| `DataAberturaEmpresa` | datetime | Data de fundação/abertura |
-| `DataInclusao` | datetime | Data/hora de cadastro no sistema |
+| `NomeFornecedor` | varchar(150) | Nome do fornecedor (Obrigatório) |
+| `Cnpj` | string | CNPJ da empresa (Obrigatório)|
+| `NomeFantasia` | varchar(150) | Nome Fantasia (Obrigatório) |
+| `Endereco` | string | Endereço formatado (Obrigatório) |
+| `Cep` | string | CEP do endereço (Obrigatório) |
+| `DataAberturaEmpresa` | datetime | Data de fundação/abertura (Obrigatório) |
+| `DataInclusao` | datetime | Data/hora de cadastro no sistema (Gerado automaticamente)|
 
 ---
 
