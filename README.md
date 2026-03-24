@@ -35,7 +35,7 @@ O projeto está preparado para receber uma string de conexão. Nós iremos forne
 
 ```json
 "ConnectionStrings": {
-  "DefaultConnection": "Server=localhost;Initial Catalog=dbFornecedores;Persist Security Info=False;User ID=user;Password=password;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=true;"
+  "DefaultConnection": "Server=localhost;Initial Catalog=databaseName;Persist Security Info=False;User ID=usernameDb;Password=password123;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=true;"
 }
 ```
 
@@ -91,6 +91,28 @@ npm run dev
 | `GET` | `/api/fornecedores/{id}` | Buscar um fornecedor específico por ID |
 | `PUT` | `/api/fornecedores/{id}` | Atualizar dados de um fornecedor existente |
 | `DELETE` | `/api/fornecedores/{id}` | Excluir um fornecedor |
+
+### ⚠️ Criando um Fornecedor pelo Scalar (POST) 
+**Endpoint:** `https://localhost:7277/api/fornecedores`
+
+Ao tentar testar a criação de um novo fornecedor pelo Scalar, você notará que o site gera um exemplo de JSON que traz junto os campos `id` e `dataInclusao`.
+
+⚠️ **Importante:** Se você enviar a requisição com esses campos, provavelmente receberá um erro do banco de dados! Isso acontece porque o ID e a Data de Inclusão são gerados automaticamente pelo sistema e não devem ser informados manualmente na criação.
+
+Para testar com sucesso, copie e cole o modelo abaixo, **que não possui o `id` nem a `dataInclusao`**:
+
+```json
+{
+  "nomeFornecedor": "TOP DOWN CONSULTORIA LTDA",
+  "cnpj": "40998734000126",
+  "nomeFantasia": "TOP SOLUTIONS",
+  "endereco": "RUA JUAREZ TAVORA, 3370",
+  "cep": "59065300",
+  "dataAberturaEmpresa": "1993-05-11T00:00:00"
+}
+```
+
+> **💡 Dica de Ouro:** Em uma boa arquitetura, resolvemos isso utilizando **DTOs (Data Transfer Objects)** para separar os dados de entrada do que é a verdadeira Entidade do banco. Que tal aproveitar esse detalhe para mostrar como se faz e já garantir alguns pontos extras nos nossos **Diferenciais** listados abaixo? 😉
 
 ---
 

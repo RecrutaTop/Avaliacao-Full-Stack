@@ -3,9 +3,9 @@ using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuração do Banco de Dados em Memória
+// Configuração do Banco de Dados SQL Server
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseInMemoryDatabase("FornecedoresDb"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApi();
@@ -79,6 +79,7 @@ app.MapPut("/api/fornecedores/{id}", async (int id, Fornecedor fornecedorAtualiz
 
     fornecedor.NomeFornecedor = fornecedorAtualizado.NomeFornecedor;
     fornecedor.Cnpj = fornecedorAtualizado.Cnpj;
+    fornecedor.NomeFantasia = fornecedorAtualizado.NomeFantasia;
     fornecedor.Endereco = fornecedorAtualizado.Endereco;
     fornecedor.Cep = fornecedorAtualizado.Cep;
     fornecedor.DataAberturaEmpresa = fornecedorAtualizado.DataAberturaEmpresa;
@@ -101,36 +102,16 @@ app.MapDelete("/api/fornecedores/{id}", async (int id, AppDbContext db) =>
 })
 .WithName("DeleteFornecedor");
 
-// Cria um escopo para inicializar o banco de dados com alguns dados de teste
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.EnsureCreated();
-
-    if (!db.Fornecedores.Any())
-    {
-        db.Fornecedores.Add(new Fornecedor
-        {
-            NomeFornecedor = "Empresa Teste LTDA",
-            Cnpj = "12.345.678/0001-99",
-            Endereco = "Rua Teste, 123",
-            Cep = "12345-678",
-            DataAberturaEmpresa = new DateTime(2020, 1, 1),
-            DataInclusao = DateTime.Now
-        });
-        db.SaveChanges();
-    }
-}
-
 app.Run();
 
-// --- CLASSES E CONTEXTO ---
+// --- CLASSES MODEL E CONTEXTO ---
 
 public class Fornecedor
 {
     public int Id { get; set; }
     public string NomeFornecedor { get; set; } = string.Empty;
     public string Cnpj { get; set; } = string.Empty;
+    public string NomeFantasia { get; set; } = string.Empty;
     public string Endereco { get; set; } = string.Empty;
     public string Cep { get; set; } = string.Empty;
     public DateTime DataAberturaEmpresa { get; set; }
@@ -142,4 +123,9 @@ public class AppDbContext : DbContext
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
     public DbSet<Fornecedor> Fornecedores { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Fornecedor>().ToTable("tbFornecedor");
+    }
 }
